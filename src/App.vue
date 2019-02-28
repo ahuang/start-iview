@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <!-- vue-root -->
+    <!-- <router-view/> -->
+
+    <!-- hello-world -->
+    <!-- <hello-world></hello-world>  -->
+    
+    <!-- iview form 表单验证 -->
+    <form-validate></form-validate>
+
   </div>
 </template>
 
 <script>
+import HelloWorld from '@/components/HelloWorld'
+import FormValidate from '@/components/FormValidate'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {HelloWorld, FormValidate}
 }
 </script>
 
