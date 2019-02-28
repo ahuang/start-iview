@@ -36,12 +36,16 @@
         name: 'FormValidate',
         data () {
             const validateName = (rule, value, callback) => {
-                console.log(value, value === '')
-                if(value === ''){
-                    callback(new Error('自定义校验-名称不能为空'));
-                }else{
-                    callback();
+                if (!value) {
+                    return callback(new Error('自定义校验-不能为空'));
                 }
+                if (/.*[\u4e00-\u9fa5]{1,}.*/.test(value) || !(/^\S+$/.test(value))) {
+                    return callback(new Error('自定义校验-名称不能有中文或空格!'));
+                }
+                if (!Number.isInteger(+value)) {
+                    return callback(new Error('自定义校验-需要整数'));
+                }                               
+                callback();
             };
             return {
                 // 表单数据和v-model绑定
