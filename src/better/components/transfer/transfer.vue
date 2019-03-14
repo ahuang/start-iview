@@ -237,12 +237,17 @@
             },
             handleLeftCheckedKeysChange (keys) {
                 this.leftCheckedKeys = keys;
+                // 向使用者发出所有item点击事件
+                this.$emit('on-click-all', 'left', keys); 
             },
             handleRightCheckedKeysChange (keys) {
                 this.rightCheckedKeys = keys;
+                // 向使用者发出所有item点击事件
+                this.$emit('on-click-all', 'right', keys); 
             },
             handleCheckedKeys (selfType, itemKey) {
-                this.$emit('on-click-change', selfType, itemKey); // 向使用者发出事件点击事件
+                // 向使用者发出某个item被点击事件
+                this.$emit('on-click-change', selfType, itemKey); 
                 const sourceSelectedKeys = this.getValidKeys('left');
                 const targetSelectedKeys = this.getValidKeys('right');
                 this.$emit('on-selected-change', sourceSelectedKeys, targetSelectedKeys);

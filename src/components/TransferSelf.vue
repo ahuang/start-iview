@@ -9,7 +9,8 @@
         <h1>改良后的transfer</h1>
         <p style="margin-bottom: 20px">点击内容即可实现左右移动</p>
         <TransferBetter filterable :data="sourceData" :target-keys="targetKeys"  
-            @on-change="handleMove" @on-click-change="handleClickChange"
+            @on-change="handleMove" @on-click-change="handleClickChange" 
+            @on-click-all="handleClickAll"
             :render-format="renderContent" :list-style="listStyle"></TransferBetter>        
     </div>
 </template>
@@ -48,8 +49,18 @@ export default {
                 }else{
                     this.targetKeys = this.targetKeys.filter(d => d !== itemKey);
                 }
-
+            },
+            // 改良-点击左右全选事件
+            handleClickAll(selfType,itemKeys){
+                console.log('handleClickAll....');
+                console.log(`selfType=${selfType}, itemKeys=${itemKeys}`);
+                if(selfType === 'left'){
+                    this.targetKeys = [...this.targetKeys, ...itemKeys];
+                }else{
+                    this.targetKeys = [];
+                }
             }
+
         }    
 }
 </script>
