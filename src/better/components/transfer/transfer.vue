@@ -58,7 +58,8 @@
                         prefixCls: this.prefixCls,
                         operations: this.operations,
                         leftActive: this.leftValidKeysCount > 0,
-                        rightActive: this.rightValidKeysCount > 0
+                        rightActive: this.rightValidKeysCount > 0,
+                        showOperation: this.showOperation
                     }
                 }),
 
@@ -140,6 +141,10 @@
             },
             notFoundText: {
                 type: String
+            },
+            showOperation: {
+                type: Boolean,
+                default: true
             }
         },
         data () {

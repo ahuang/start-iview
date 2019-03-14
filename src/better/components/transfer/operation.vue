@@ -1,5 +1,5 @@
 <template>
-    <div :class="prefixCls + '-operation'">
+    <div :class="prefixCls + '-operation'" v-if="showOperation">
         <i-button type="primary" size="small" :disabled="!rightActive" @click.native="moveToLeft">
             <Icon type="ios-arrow-back"></Icon> <span>{{ operations[0] }}</span>
         </i-button>
@@ -19,7 +19,8 @@
             prefixCls: String,
             operations: Array,
             leftActive: Boolean,
-            rightActive: Boolean
+            rightActive: Boolean,
+            showOperation: Boolean
         },
         methods: {
             moveToLeft () {

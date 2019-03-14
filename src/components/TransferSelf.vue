@@ -5,12 +5,18 @@
         <Transfer filterable :data="sourceData" :target-keys="targetKeys"  
             @on-change="handleMove" 
             :render-format="renderContent" :list-style="listStyle"></Transfer>
-        <hr style="margin: 30px">
+        <hr style="margin:30px">
         <h1>改良后的transfer</h1>
-        <p style="margin-bottom: 20px">点击内容即可实现左右移动</p>
+        <p style="width: fit-content;margin: 0 auto;text-align: left;padding-bottom: 20px;">
+            <ol>
+                <li>点击内容，可实现左右移动 @on-click-change</li>
+                <li>点击全选，可实现左右移动 @on-click-all</li>
+                <li>可以设置隐藏中间箭头按钮 :showOperation</li>
+            </ol>
+        </p>
         <TransferBetter filterable :data="sourceData" :target-keys="targetKeys"  
-            @on-change="handleMove" @on-click-change="handleClickChange" 
-            @on-click-all="handleClickAll"
+            @on-change="handleMove" @on-click-change="handleClickChange" @on-click-all="handleClickAll"
+            :showOperation="false"
             :render-format="renderContent" :list-style="listStyle"></TransferBetter>        
     </div>
 </template>
@@ -70,6 +76,9 @@ export default {
 }
 .ivu-transfer-list-body-with-search .ivu-transfer-list-content{
     text-align: left;
+}
+.ivu-transfer-list{
+    margin-right: 30px;
 }
 </style>
 
