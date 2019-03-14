@@ -7,7 +7,11 @@
     <!-- <hello-world></hello-world>  -->
     
     <!-- iview form 表单验证 -->
-    <form-validate></form-validate>
+    <!-- <form-validate></form-validate> -->
+
+
+    <!-- 改良版本的transfer -->
+    <transfer-self></transfer-self>
 
   </div>
 </template>
@@ -15,10 +19,11 @@
 <script>
 import HelloWorld from '@/components/HelloWorld'
 import FormValidate from '@/components/FormValidate'
+import TransferSelf from '@/components/TransferSelf'
 
 export default {
   name: 'App',
-  components: {HelloWorld, FormValidate}
+  components: {HelloWorld, FormValidate, TransferSelf}
 }
 </script>
 
@@ -30,5 +35,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin-bottom: 360px;
 }
 </style>
