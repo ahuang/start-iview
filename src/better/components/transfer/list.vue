@@ -1,8 +1,8 @@
 <template>
     <div :class="classes" :style="listStyle">
         <div :class="prefixCls + '-header'">
-            <Checkbox :value="checkedAll" :disabled="checkedAllDisabled" @on-change="toggleSelectAll"></Checkbox>
-            <span :class="prefixCls + '-header-title'" @click="toggleSelectAll(!checkedAll)">{{ title }}</span>
+            <Checkbox v-if="showCheckBox" :value="checkedAll" :disabled="checkedAllDisabled" @on-change="toggleSelectAll"></Checkbox>
+            <span :class="prefixCls + '-header-title'" @click="toggleSelectAll(!checkedAll)">{{ showCheckBox ? title : '全选' }}</span>
             <span :class="prefixCls + '-header-count'">{{ count }}</span>
         </div>
         <div :class="bodyClasses">
@@ -19,7 +19,7 @@
                     v-for="item in filterData"
                     :class="itemClasses(item)"
                     @click.prevent="select(item)">
-                    <Checkbox :value="isCheck(item)" :disabled="item.disabled"></Checkbox>
+                    <Checkbox v-if="showCheckBox" :value="isCheck(item)" :disabled="item.disabled"></Checkbox>
                     <span v-html="showLabel(item)"></span>
                 </li>
                 <li :class="prefixCls + '-content-not-found'">{{ notFoundText }}</li>
@@ -47,7 +47,8 @@
             filterMethod: Function,
             notFoundText: String,
             validKeysCount: Number,
-            selfType: String
+            selfType: String,
+            showCheckBox: Boolean,
         },
         data () {
             return {
@@ -118,9 +119,14 @@
                 this.showItems = this.data;
             },
             toggleSelectAll (status) {
-                const keys = status ?
+                let keys = [];
+                if(this.showCheckBox){
+                    keys = status ?
                         this.filterData.filter(data => !data.disabled || this.checkedKeys.indexOf(data.key) > -1).map(data => data.key) :
                         this.filterData.filter(data => data.disabled && this.checkedKeys.indexOf(data.key) > -1).map(data => data.key);
+                }else{
+                    keys = this.filterData.map(data => data.key);
+                }
                 this.$emit('on-checked-keys-change', keys);
             },
             handleQueryClear () {

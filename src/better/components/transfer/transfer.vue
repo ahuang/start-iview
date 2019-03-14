@@ -46,7 +46,8 @@
                         filterPlaceholder: this.localeFilterPlaceholder,
                         filterMethod: this.filterMethod,
                         notFoundText: this.localeNotFoundText,
-                        selfType: 'left'
+                        selfType: 'left',
+                        showCheckBox: this.showCheckBox
                     },
                     on: {
                         'on-checked-keys-change': this.handleLeftCheckedKeysChange
@@ -77,7 +78,8 @@
                         filterPlaceholder: this.localeFilterPlaceholder,
                         filterMethod: this.filterMethod,
                         notFoundText: this.localeNotFoundText,
-                        selfType: 'right'
+                        selfType: 'right',
+                        showCheckBox: this.showCheckBox
                     },
                     on: {
                         'on-checked-keys-change': this.handleRightCheckedKeysChange
@@ -145,7 +147,11 @@
             showOperation: {
                 type: Boolean,
                 default: true
-            }
+            },
+            showCheckBox: {
+                type: Boolean,
+                default: true
+            },
         },
         data () {
             return {

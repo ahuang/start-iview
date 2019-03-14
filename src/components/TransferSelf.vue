@@ -12,11 +12,12 @@
                 <li>点击内容，可实现左右移动 @on-click-change</li>
                 <li>点击全选，可实现左右移动 @on-click-all</li>
                 <li>可以设置隐藏中间箭头按钮 :showOperation</li>
+                <li>可以设置隐藏checkbox :showCheckBox</li>
             </ol>
         </p>
         <TransferBetter filterable :data="sourceData" :target-keys="targetKeys"  
             @on-change="handleMove" @on-click-change="handleClickChange" @on-click-all="handleClickAll"
-            :showOperation="false"
+            :showOperation="false" :showCheckBox="false"
             :render-format="renderContent" :list-style="listStyle"></TransferBetter>        
     </div>
 </template>
@@ -79,6 +80,9 @@ export default {
 }
 .ivu-transfer-list{
     margin-right: 30px;
+}
+.ivu-transfer-list-header-title{
+    color: #2d8cf0;
 }
 </style>
 
