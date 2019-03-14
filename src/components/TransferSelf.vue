@@ -63,8 +63,8 @@ export default {
                 console.log(`selfType=${selfType}, itemKeys=${itemKeys}`);
                 if(selfType === 'left'){
                     this.targetKeys = [...this.targetKeys, ...itemKeys];
-                }else{
-                    this.targetKeys = [];
+                }else{ // itemKeys右侧移入不一定是全部，可能是经过了过滤的一部分。这里就是从已有keys中排除调itemKeys包含的item即可
+                    this.targetKeys = this.targetKeys.filter(d=>itemKeys.indexOf(d) < 0);
                 }
             }
 
