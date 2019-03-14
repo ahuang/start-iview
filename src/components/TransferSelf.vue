@@ -2,11 +2,15 @@
     <div>
         <h1>自带的transfer</h1>
         <p style="margin-bottom: 20px">只能通过中间的按钮对内容进行左右移动</p>
-        <Transfer filterable :data="sourceData" :target-keys="targetKeys" :render-format="renderContent" @on-change="handleChange1" :list-style="listStyle"></Transfer>
+        <Transfer filterable :data="sourceData" :target-keys="targetKeys"  
+            @on-change="handleMove" 
+            :render-format="renderContent" :list-style="listStyle"></Transfer>
         <hr style="margin: 30px">
         <h1>改良后的transfer</h1>
         <p style="margin-bottom: 20px">点击内容即可实现左右移动</p>
-        <TransferBetter filterable :data="sourceData" :target-keys="targetKeys" :render-format="renderContent" @on-change="handleChange1" :list-style="listStyle"></TransferBetter>
+        <TransferBetter filterable :data="sourceData" :target-keys="targetKeys"  
+            @on-change="handleMove" @on-click-change="handleClickChange"
+            :render-format="renderContent" :list-style="listStyle"></TransferBetter>        
     </div>
 </template>
 <script>
@@ -30,11 +34,21 @@ export default {
             renderContent (item) {
                 return item.label;
             },
-            handleChange1 (newTargetKeys, direction, moveKeys) {
-                console.log(newTargetKeys);
-                console.log(direction);
-                console.log(moveKeys);
+            // 自带的-点击中间按钮事件
+            handleMove (newTargetKeys, direction, moveKeys) {
+                console.log('handleMove....')
                 this.targetKeys = newTargetKeys;
+            },
+            // 改良-点击左右列表项事件
+            handleClickChange(selfType, itemKey){
+                console.log('handleClickChange....');
+                console.log(`selfType=${selfType}, itemKey=${itemKey}`);
+                if(selfType === 'left'){
+                    this.targetKeys = [...this.targetKeys, itemKey];
+                }else{
+                    this.targetKeys = this.targetKeys.filter(d => d !== itemKey);
+                }
+
             }
         }    
 }

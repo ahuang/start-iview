@@ -46,7 +46,8 @@
             filterPlaceholder: String,
             filterMethod: Function,
             notFoundText: String,
-            validKeysCount: Number
+            validKeysCount: Number,
+            selfType: String
         },
         data () {
             return {
@@ -111,7 +112,7 @@
                 if (item.disabled) return;
                 const index = this.checkedKeys.indexOf(item.key);
                 index > -1 ? this.checkedKeys.splice(index, 1) : this.checkedKeys.push(item.key);
-                this.$parent.handleCheckedKeys();
+                this.$parent.handleCheckedKeys(this.selfType, item.key);
             },
             updateFilteredData () {
                 this.showItems = this.data;

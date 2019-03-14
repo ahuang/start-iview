@@ -45,7 +45,8 @@
                         filterable: this.filterable,
                         filterPlaceholder: this.localeFilterPlaceholder,
                         filterMethod: this.filterMethod,
-                        notFoundText: this.localeNotFoundText
+                        notFoundText: this.localeNotFoundText,
+                        selfType: 'left'
                     },
                     on: {
                         'on-checked-keys-change': this.handleLeftCheckedKeysChange
@@ -74,7 +75,8 @@
                         filterable: this.filterable,
                         filterPlaceholder: this.localeFilterPlaceholder,
                         filterMethod: this.filterMethod,
-                        notFoundText: this.localeNotFoundText
+                        notFoundText: this.localeNotFoundText,
+                        selfType: 'right'
                     },
                     on: {
                         'on-checked-keys-change': this.handleRightCheckedKeysChange
@@ -239,7 +241,8 @@
             handleRightCheckedKeysChange (keys) {
                 this.rightCheckedKeys = keys;
             },
-            handleCheckedKeys () {
+            handleCheckedKeys (selfType, itemKey) {
+                this.$emit('on-click-change', selfType, itemKey); // 向使用者发出事件点击事件
                 const sourceSelectedKeys = this.getValidKeys('left');
                 const targetSelectedKeys = this.getValidKeys('right');
                 this.$emit('on-selected-change', sourceSelectedKeys, targetSelectedKeys);
