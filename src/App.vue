@@ -11,7 +11,10 @@
 
 
     <!-- 改良版本的transfer -->
-    <transfer-self></transfer-self>
+    <!-- <transfer-self></transfer-self> -->
+
+    <!-- table支持vue slot-scope语法的例子 -->
+    <table-slot-scope></table-slot-scope>
 
   </div>
 </template>
@@ -20,10 +23,11 @@
 import HelloWorld from '@/components/HelloWorld'
 import FormValidate from '@/components/FormValidate'
 import TransferSelf from '@/components/TransferSelf'
+import TableSlotScope from '@/components/TableSlotScope'
 
 export default {
   name: 'App',
-  components: {HelloWorld, FormValidate, TransferSelf}
+  components: {HelloWorld, FormValidate, TransferSelf, TableSlotScope}
 }
 </script>
 
